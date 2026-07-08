@@ -1,0 +1,463 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 15, 23, 42;
+  --background-rgb: 248, 250, 252;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 248, 250, 252;
+    --background-rgb: 15, 23, 42;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+  font-family: var(--font-cairo), system-ui, -apple-system, sans-serif;
+}
+
+/* RTL support for Arabic */
+[dir='rtl'] {
+  text-align: right;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* ── Orbital planet counter-rotation helpers ─────────────────────── */
+.animate-counter-fast       { animation: counter-spin         11s linear infinite; }
+.animate-counter-medium     { animation: counter-spin         18s linear infinite; }
+.animate-counter-slow       { animation: counter-spin         28s linear infinite; }
+.animate-counter-rev-slow   { animation: counter-spin-reverse 22s linear infinite; }
+.animate-counter-rev-medium { animation: counter-spin-reverse 14s linear infinite; }
+
+@keyframes counter-spin {
+  from { transform: translateX(-50%) rotate(0deg); }
+  to   { transform: translateX(-50%) rotate(-360deg); }
+}
+@keyframes counter-spin-reverse {
+  from { transform: translateX(-50%) rotate(0deg); }
+  to   { transform: translateX(-50%) rotate(360deg); }
+}
+
+/* keeps category tag text upright while the parent ring rotates */
+@keyframes counter-orbit-tag {
+  from { transform: translateX(-50%) translateY(-50%) rotate(0deg); }
+  to   { transform: translateX(-50%) translateY(-50%) rotate(-360deg); }
+}
+
+/* ── Hero orbiting category tags around central planet ──────────── */
+/* radius on mobile: 90px, on sm+: 130px                             */
+.hero-orbit-0 { animation: hero-orbit-0 28s linear infinite; }
+.hero-orbit-1 { animation: hero-orbit-1 28s linear infinite; }
+.hero-orbit-2 { animation: hero-orbit-2 28s linear infinite; }
+.hero-orbit-3 { animation: hero-orbit-3 28s linear infinite; }
+.hero-orbit-4 { animation: hero-orbit-4 28s linear infinite; }
+
+@keyframes hero-orbit-0 {
+  from { transform: rotate(0deg)   translateX(170px) rotate(0deg);    }
+  to   { transform: rotate(360deg) translateX(170px) rotate(-360deg); }
+}
+@keyframes hero-orbit-1 {
+  from { transform: rotate(72deg)  translateX(170px) rotate(-72deg);  }
+  to   { transform: rotate(432deg) translateX(170px) rotate(-432deg); }
+}
+@keyframes hero-orbit-2 {
+  from { transform: rotate(144deg) translateX(170px) rotate(-144deg); }
+  to   { transform: rotate(504deg) translateX(170px) rotate(-504deg); }
+}
+@keyframes hero-orbit-3 {
+  from { transform: rotate(216deg) translateX(170px) rotate(-216deg); }
+  to   { transform: rotate(576deg) translateX(170px) rotate(-576deg); }
+}
+@keyframes hero-orbit-4 {
+  from { transform: rotate(288deg) translateX(170px) rotate(-288deg); }
+  to   { transform: rotate(648deg) translateX(170px) rotate(-648deg); }
+}
+
+/* ── Tiptap Rich Editor ─────────────────────────────────────────── */
+.ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: right;
+  color: #9ca3af;
+  pointer-events: none;
+  height: 0;
+}
+
+.ProseMirror {
+  outline: none;
+}
+
+.ProseMirror h1 { font-size: 1.6rem; font-weight: 700; margin: 0.75rem 0 0.4rem; line-height: 1.3; }
+.ProseMirror h2 { font-size: 1.3rem; font-weight: 700; margin: 0.65rem 0 0.35rem; line-height: 1.35; }
+.ProseMirror h3 { font-size: 1.1rem; font-weight: 600; margin: 0.5rem 0 0.3rem; }
+.ProseMirror p  { margin: 0.4rem 0; }
+.ProseMirror strong { font-weight: 700; }
+.ProseMirror em { font-style: italic; }
+.ProseMirror u  { text-decoration: underline; }
+.ProseMirror s  { text-decoration: line-through; }
+
+.ProseMirror ul { list-style-type: disc;    padding-right: 1.4rem; margin: 0.4rem 0; }
+.ProseMirror ol { list-style-type: decimal; padding-right: 1.4rem; margin: 0.4rem 0; }
+.ProseMirror li { margin: 0.2rem 0; }
+
+.ProseMirror blockquote {
+  border-right: 3px solid #6366f1;
+  padding-right: 1rem;
+  margin: 0.6rem 0;
+  color: #6b7280;
+  font-style: italic;
+}
+
+.ProseMirror code {
+  background: #f3f4f6;
+  border-radius: 4px;
+  padding: 0.1em 0.35em;
+  font-size: 0.85em;
+  font-family: 'Fira Code', 'Courier New', monospace;
+  color: #7c3aed;
+}
+
+.ProseMirror pre {
+  background: #1e1e2e;
+  color: #cdd6f4;
+  border-radius: 12px;
+  padding: 3rem 1.25rem 1.25rem;
+  overflow-x: auto;
+  margin: 1rem 0;
+  position: relative;
+}
+
+/* Mac-style window buttons for editor */
+.ProseMirror pre::before {
+  content: '';
+  position: absolute;
+  top: 1rem;
+  right: 1.25rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ff5f56;
+  box-shadow: -20px 0 0 #ffbd2e, -40px 0 0 #27c93f;
+  z-index: 10;
+}
+
+.ProseMirror pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  font-size: 0.875rem;
+}
+
+/* ── Note reading page prose ─────────────────────────────────────── */
+.prose h1 { font-size: 1.7rem; font-weight: 700; margin: 1rem 0 0.5rem; }
+.prose h2 { font-size: 1.35rem; font-weight: 700; margin: 0.9rem 0 0.4rem; }
+.prose h3 { font-size: 1.1rem; font-weight: 600; margin: 0.7rem 0 0.3rem; }
+.prose p  { margin: 0.6rem 0; line-height: 1.75; }
+.prose ul { list-style-type: disc;    padding-right: 1.5rem; margin: 0.5rem 0; }
+.prose ol { list-style-type: decimal; padding-right: 1.5rem; margin: 0.5rem 0; }
+.prose li { margin: 0.25rem 0; }
+.prose blockquote {
+  border-right: 4px solid #6366f1;
+  padding-right: 1rem;
+  margin: 0.75rem 0;
+  color: #6b7280;
+  font-style: italic;
+}
+.prose code {
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  padding: 0.2em 0.4em;
+  font-size: 0.9em;
+  font-family: 'Fira Code', 'Cascadia Code', monospace;
+  color: #6366f1;
+}
+
+.prose pre {
+  background: #1e1e2e;
+  color: #cdd6f4;
+  border-radius: 12px;
+  padding: 3rem 1.25rem 1.25rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+  position: relative;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+}
+
+/* Mac-style window buttons */
+.prose pre::before {
+  content: '';
+  position: absolute;
+  top: 1rem;
+  right: 1.25rem;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ff5f56;
+  box-shadow: -20px 0 0 #ffbd2e, -40px 0 0 #27c93f;
+  z-index: 10;
+}
+
+.prose pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  font-family: 'Fira Code', 'Cascadia Code', monospace;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  border: none;
+}
+
+/* Syntax Highlighting Colors (HLJS compatible) */
+.hljs-keyword, .hljs-selector-tag { color: #c678dd; font-weight: bold; }
+.hljs-string, .hljs-doctag { color: #98c379; }
+.hljs-comment, .hljs-quote { color: #5c6370; font-style: italic; }
+.hljs-number, .hljs-regexp, .hljs-literal, .hljs-bullet { color: #d19a66; }
+.hljs-type, .hljs-built_in, .hljs-builtin-name { color: #e5c07b; }
+.hljs-params, .hljs-attr { color: #d19a66; }
+.hljs-function, .hljs-title { color: #61afef; }
+
+/* Dashboard dark mode */
+.dashboard-dark {
+  color-scheme: dark;
+  background:
+    radial-gradient(circle at top right, rgba(99, 102, 241, 0.16), transparent 30rem),
+    linear-gradient(180deg, #020617 0%, #07111f 48%, #020617 100%);
+  color: #e5e7eb;
+}
+
+.dashboard-dark :is(input, textarea, select) {
+  background-color: rgba(15, 23, 42, 0.92);
+  border-color: rgba(148, 163, 184, 0.24);
+  color: #e5e7eb;
+}
+
+.dashboard-dark :is(input, textarea, select)::placeholder {
+  color: #64748b;
+}
+
+.dashboard-dark :is(table, thead, tbody, tr, td, th) {
+  border-color: rgba(148, 163, 184, 0.14);
+}
+
+.dashboard-dark :is(
+  [class~="bg-white"],
+  [class~="bg-white/95"],
+  [class~="bg-gray-50"],
+  [class~="bg-gray-50/60"],
+  [class~="bg-gray-50/40"],
+  [class~="bg-slate-100"],
+  [class~="bg-neutral-50"],
+  [class~="bg-neutral-100"]
+) {
+  background-color: rgba(15, 23, 42, 0.88);
+}
+
+.dashboard-dark :is(
+  [class~="bg-gray-100"],
+  [class~="bg-gray-200"],
+  [class~="bg-slate-200"],
+  [class~="bg-indigo-50"],
+  [class~="bg-indigo-50/50"],
+  [class~="bg-indigo-100"],
+  [class~="bg-blue-50"],
+  [class~="bg-blue-100"],
+  [class~="bg-violet-50"],
+  [class~="bg-violet-50/60"],
+  [class~="bg-violet-100"],
+  [class~="bg-purple-50"],
+  [class~="bg-purple-100"],
+  [class~="bg-emerald-50"],
+  [class~="bg-emerald-100"],
+  [class~="bg-green-50"],
+  [class~="bg-green-100"],
+  [class~="bg-amber-50"],
+  [class~="bg-amber-100"],
+  [class~="bg-yellow-50"],
+  [class~="bg-yellow-100"],
+  [class~="bg-orange-50"],
+  [class~="bg-orange-100"],
+  [class~="bg-pink-50"],
+  [class~="bg-pink-100"],
+  [class~="bg-red-50"],
+  [class~="bg-red-100"]
+) {
+  background-color: rgba(30, 41, 59, 0.86);
+}
+
+.dashboard-dark :is(
+  [class~="rounded-full"][class~="bg-white"],
+  [class~="absolute"][class~="bg-white"]
+) {
+  background-color: #f8fafc;
+}
+
+.dashboard-dark :is(
+  [class~="border-gray-50"],
+  [class~="border-gray-100"],
+  [class~="border-gray-200"],
+  [class~="border-gray-300"],
+  [class~="border-slate-100"],
+  [class~="border-slate-200"]
+) {
+  border-color: rgba(148, 163, 184, 0.18);
+}
+
+.dashboard-dark :is(
+  [class~="divide-gray-50"],
+  [class~="divide-gray-100"],
+  [class~="divide-gray-200"]
+) > :not([hidden]) ~ :not([hidden]) {
+  border-color: rgba(148, 163, 184, 0.14);
+}
+
+.dashboard-dark :is([class~="border-indigo-100"], [class~="border-indigo-200"]) {
+  border-color: rgba(129, 140, 248, 0.28);
+}
+
+.dashboard-dark :is([class~="border-violet-100"], [class~="border-violet-200"], [class~="border-purple-200"]) {
+  border-color: rgba(167, 139, 250, 0.28);
+}
+
+.dashboard-dark :is([class~="border-blue-200"]) {
+  border-color: rgba(96, 165, 250, 0.28);
+}
+
+.dashboard-dark :is([class~="border-emerald-200"], [class~="border-green-100"], [class~="border-green-200"]) {
+  border-color: rgba(74, 222, 128, 0.26);
+}
+
+.dashboard-dark :is([class~="border-amber-200"], [class~="border-yellow-200"]) {
+  border-color: rgba(251, 191, 36, 0.28);
+}
+
+.dashboard-dark :is([class~="border-red-100"], [class~="border-red-200"]) {
+  border-color: rgba(248, 113, 113, 0.3);
+}
+
+.dashboard-dark :is([class~="text-gray-900"], [class~="text-gray-800"], [class~="text-slate-900"], [class~="text-slate-800"]) {
+  color: #f8fafc;
+}
+
+.dashboard-dark :is([class~="text-gray-700"], [class~="text-gray-600"], [class~="text-slate-700"], [class~="text-slate-600"]) {
+  color: #cbd5e1;
+}
+
+.dashboard-dark :is([class~="text-gray-500"], [class~="text-gray-400"], [class~="text-gray-300"], [class~="text-slate-500"], [class~="text-slate-400"]) {
+  color: #94a3b8;
+}
+
+.dashboard-dark :is([class~="text-indigo-700"], [class~="text-indigo-600"], [class~="text-indigo-500"]) {
+  color: #a5b4fc;
+}
+
+.dashboard-dark :is([class~="text-violet-700"], [class~="text-violet-600"], [class~="text-purple-600"]) {
+  color: #c4b5fd;
+}
+
+.dashboard-dark :is([class~="text-blue-600"], [class~="text-blue-500"]) {
+  color: #93c5fd;
+}
+
+.dashboard-dark :is([class~="text-emerald-600"], [class~="text-green-700"], [class~="text-green-600"]) {
+  color: #86efac;
+}
+
+.dashboard-dark :is([class~="text-amber-700"], [class~="text-amber-600"], [class~="text-amber-500"], [class~="text-yellow-700"]) {
+  color: #fcd34d;
+}
+
+.dashboard-dark :is([class~="text-orange-600"], [class~="text-pink-600"]) {
+  color: #f9a8d4;
+}
+
+.dashboard-dark :is([class~="text-red-700"], [class~="text-red-600"], [class~="text-red-500"]) {
+  color: #fca5a5;
+}
+
+.dashboard-dark :is(
+  [class~="hover:bg-gray-50"]:hover,
+  [class~="hover:bg-gray-100"]:hover,
+  [class~="hover:bg-gray-200"]:hover,
+  [class~="hover:bg-indigo-50"]:hover,
+  [class~="hover:bg-indigo-50/40"]:hover,
+  [class~="hover:bg-indigo-50/50"]:hover,
+  [class~="hover:bg-indigo-100"]:hover,
+  [class~="hover:bg-violet-200"]:hover,
+  [class~="hover:bg-red-50"]:hover,
+  [class~="hover:bg-red-100"]:hover,
+  [class~="hover:bg-red-200"]:hover,
+  [class~="hover:bg-amber-50"]:hover,
+  [class~="hover:bg-amber-100"]:hover,
+  [class~="hover:bg-amber-200"]:hover,
+  [class~="hover:bg-green-200"]:hover
+) {
+  background-color: rgba(51, 65, 85, 0.82);
+}
+
+.dashboard-dark :is(
+  [class~="hover:text-gray-900"]:hover,
+  [class~="hover:text-gray-800"]:hover,
+  [class~="hover:text-gray-700"]:hover,
+  [class~="hover:text-gray-600"]:hover
+) {
+  color: #f8fafc;
+}
+
+.dashboard-dark :is([class~="shadow-sm"], [class~="shadow-md"], [class~="shadow-lg"], [class~="shadow-xl"], [class~="shadow-2xl"]) {
+  box-shadow: 0 20px 50px -32px rgba(0, 0, 0, 0.85);
+}
+
+.dashboard-dark :is([class~="from-indigo-50"], [class~="from-violet-50/60"]) {
+  --tw-gradient-from: rgba(49, 46, 129, 0.42) var(--tw-gradient-from-position);
+  --tw-gradient-to: rgba(49, 46, 129, 0) var(--tw-gradient-to-position);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to);
+}
+
+.dashboard-dark :is([class~="to-white"], [class~="to-indigo-50/60"]) {
+  --tw-gradient-to: rgba(15, 23, 42, 0.94) var(--tw-gradient-to-position);
+}
+
+.dashboard-dark .prose,
+.dashboard-dark .ProseMirror {
+  color: #dbeafe;
+}
+
+.dashboard-dark .prose :is(h1, h2, h3, strong),
+.dashboard-dark .ProseMirror :is(h1, h2, h3, strong) {
+  color: #f8fafc;
+}
+
+.dashboard-dark .prose blockquote,
+.dashboard-dark .ProseMirror blockquote {
+  color: #cbd5e1;
+}
+
+.dashboard-dark .prose code,
+.dashboard-dark .ProseMirror code {
+  background: rgba(30, 41, 59, 0.95);
+  border-color: rgba(148, 163, 184, 0.2);
+  color: #c4b5fd;
+}
+
+.dashboard-dark .prose pre,
+.dashboard-dark .ProseMirror pre {
+  background: #020617;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+}
+
+.dashboard-dark .recharts-text {
+  fill: #cbd5e1;
+}
+
+.dashboard-dark .recharts-legend-item-text {
+  color: #cbd5e1 !important;
+}

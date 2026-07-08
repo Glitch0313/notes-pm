@@ -1,0 +1,76 @@
+
+> notevaultpro-nextjs@0.1.0 dev
+> next dev
+
+  ▲ Next.js 14.2.35
+  - Local:        http://localhost:3000
+  - Environments: .env
+
+ ✓ Starting...
+ ✓ Ready in 4.2s
+ ○ Compiling / ...
+ ✓ Compiled / in 5.5s (678 modules)
+ ✓ Compiled in 730ms (272 modules)
+ GET / 200 in 6410ms
+ ✓ Compiled in 458ms (258 modules)
+ ○ Compiling /_not-found ...
+ ✓ Compiled /login in 6.6s (667 modules)
+ GET /api/auth/me 200 in 6122ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 7640ms
+ GET /api/auth/me 200 in 51ms
+ ✓ Compiled /api/auth/login in 275ms (434 modules)
+ POST /api/auth/login 200 in 1423ms
+ ○ Compiling /middleware ...
+ ✓ Compiled /middleware in 669ms (169 modules)
+ ○ Compiling /dashboard ...
+ ✓ Compiled /dashboard in 647ms (710 modules)
+ GET /dashboard 200 in 777ms
+ GET /.well-known/appspecific/com.chrome.devtools.json 404 in 234ms
+ GET /api/auth/me 200 in 63ms
+ ✓ Compiled /api/notes in 314ms (446 modules)
+ ✓ Compiled (449 modules)
+ GET /api/auth/me 200 in 670ms
+ GET /api/notifications 200 in 707ms
+ GET /api/notes?page=1&limit=20 200 in 721ms
+ GET /api/auth/me 200 in 234ms
+ GET /api/notifications 200 in 181ms
+ GET /api/notes?page=1&limit=20 200 in 209ms
+ GET /api/notes?limit=1000 200 in 215ms
+ GET /api/auth/me 200 in 85ms
+ GET /api/notes?limit=1000 200 in 90ms
+ ✓ Compiled /notes/[id] in 323ms (721 modules)
+ GET /api/auth/me 200 in 44ms
+ ✓ Compiled /api/notes/[id] in 302ms (455 modules)
+ GET /api/auth/me 200 in 516ms
+ GET /api/notes/cmo9ys22n000144bxmkifh88x 200 in 1207ms
+ GET /api/notes/cmo9ys22n000144bxmkifh88x 200 in 22ms
+ GET /api/auth/me 200 in 21ms
+ GET /api/auth/me 200 in 13ms
+ GET /api/notes?page=1&limit=20 200 in 43ms
+ GET /api/notes?page=1&limit=20 200 in 35ms
+ GET /api/notes?limit=1000 200 in 32ms
+ GET /api/notes?limit=1000 200 in 47ms
+ ○ Compiling /marketplace ...
+ ✓ Compiled /marketplace in 640ms (733 modules)
+ GET /api/auth/me 200 in 62ms
+ ✓ Compiled /api/marketplace in 329ms (463 modules)
+ GET /api/auth/me 200 in 575ms
+ GET /api/notifications 200 in 491ms
+ GET /api/marketplace?search=&category=&page=1&limit=12 200 in 649ms
+ ✓ Compiled /api/marketplace/my-purchases in 292ms (465 modules)
+ GET /api/auth/me 200 in 674ms
+ GET /api/marketplace?search=&category=&page=1&limit=12 200 in 659ms
+ GET /api/notifications 200 in 552ms
+ GET /api/marketplace/my-purchases 200 in 706ms
+ GET /api/auth/me 200 in 29ms
+ GET /api/marketplace/my-purchases 200 in 10ms
+ GET /api/auth/me 200 in 29ms
+ GET /api/notifications 200 in 35ms
+ GET /api/notes/cmo9ys22n000144bxmkifh88x 200 in 50ms
+ GET /api/auth/me 200 in 45ms
+ GET /api/auth/me 200 in 45ms
+ GET /api/notifications 200 in 59ms
+ GET /api/notes/cmo9ys22n000144bxmkifh88x 200 in 57ms
+ GET /api/auth/me 200 in 40ms
+ ✓ Compiled /api/auth/logout in 261ms (467 modules)
+ POST /api/auth/logout 200 in 332ms
