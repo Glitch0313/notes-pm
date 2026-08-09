@@ -79,7 +79,7 @@ export default function Sidebar() {
   const initial = displayName.charAt(0).toUpperCase()
 
   return (
-    <aside className="flex flex-col w-64 min-h-screen bg-white border-l border-gray-100 py-5 px-3" dir="rtl">
+    <aside className="hidden md:flex flex-col w-64 min-h-screen bg-white border-l border-gray-100 py-5 px-3" dir="rtl">
 
       {/* Logo */}
       <div className="px-3 mb-8 flex items-center justify-between">

@@ -36,14 +36,14 @@ export default function PurchaseModal({ note, onConfirm, onCancel }: PurchaseMod
       role="dialog"
       aria-modal="true"
     >
-      <div className="bg-white rounded-2xl shadow-xl w-full max-w-md p-6 flex flex-col gap-5">
+      <div className="bg-[#0e0e13] rounded-2xl border border-white/10 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.8)] w-full max-w-md p-6 flex flex-col gap-5">
 
         {/* Header */}
         <div className="flex items-center justify-between">
-          <h2 className="text-lg font-bold text-gray-900">
+          <h2 className="text-lg font-bold text-white">
             {step === 'confirm' ? 'تأكيد طلب الشراء' : 'أكمل الدفع عبر واتساب'}
           </h2>
-          <button onClick={onCancel} className="text-gray-400 hover:text-gray-600 transition-colors" aria-label="إغلاق">
+          <button onClick={onCancel} className="text-slate-500 hover:text-slate-300 transition-colors" aria-label="إغلاق">
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
             </svg>
@@ -51,12 +51,12 @@ export default function PurchaseModal({ note, onConfirm, onCancel }: PurchaseMod
         </div>
 
         {/* Note info */}
-        <div className="bg-gray-50 rounded-xl p-4 flex flex-col gap-2">
-          <p className="text-xs text-gray-400">المذكرة</p>
-          <p className="font-semibold text-gray-900">{note.title}</p>
+        <div className="bg-white/[0.04] border border-white/10 rounded-xl p-4 flex flex-col gap-2">
+          <p className="text-xs text-slate-500">المذكرة</p>
+          <p className="font-semibold text-slate-100">{note.title}</p>
           <div className="flex items-center justify-between mt-1">
-            <span className="text-sm text-gray-500">السعر</span>
-            <span className="text-xl font-bold text-amber-600">
+            <span className="text-sm text-slate-400">السعر</span>
+            <span className="text-xl font-bold text-amber-400">
               {note.price !== null ? `${note.price.toString()} ج.م` : '—'}
             </span>
           </div>
@@ -65,31 +65,31 @@ export default function PurchaseModal({ note, onConfirm, onCancel }: PurchaseMod
         {/* Step 1 — Confirm */}
         {step === 'confirm' && (
           <>
-            <div className="bg-green-50 border border-green-100 rounded-xl p-4 text-sm text-green-800 flex gap-3">
+            <div className="bg-emerald-500/10 border border-emerald-500/20 rounded-xl p-4 text-sm text-emerald-300 flex gap-3">
               <span className="text-lg">💬</span>
               <div>
                 <p className="font-semibold mb-1">طريقة الدفع: واتساب</p>
-                <p className="text-xs text-green-700 leading-relaxed">
+                <p className="text-xs text-emerald-400/80 leading-relaxed">
                   بعد الضغط على "إنشاء الطلب"، سيُفتح واتساب مع رسالة جاهزة تحتوي تفاصيل طلبك.
                   أرسلها للأدمن وانتظر التأكيد — سيظهر زر التحميل تلقائياً.
                 </p>
               </div>
             </div>
 
-            {error && <p className="text-sm text-red-600 bg-red-50 rounded-lg px-3 py-2">{error}</p>}
+            {error && <p className="text-sm text-red-400 bg-red-500/10 border border-red-500/20 rounded-lg px-3 py-2">{error}</p>}
 
             <div className="flex gap-3">
               <button
                 onClick={handleConfirm}
                 disabled={loading}
-                className="flex-1 py-2.5 px-4 bg-green-500 hover:bg-green-600 disabled:bg-green-300 text-white rounded-xl font-medium text-sm transition-colors flex items-center justify-center gap-2"
+                className="flex-1 py-2.5 px-4 bg-emerald-500 hover:bg-emerald-400 disabled:bg-emerald-500/40 text-white rounded-xl font-medium text-sm transition-colors flex items-center justify-center gap-2"
               >
                 {loading ? '⏳ جارٍ الإنشاء…' : '📋 إنشاء الطلب'}
               </button>
               <button
                 onClick={onCancel}
                 disabled={loading}
-                className="flex-1 py-2.5 px-4 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-xl font-medium text-sm transition-colors"
+                className="flex-1 py-2.5 px-4 bg-white/5 hover:bg-white/10 border border-white/10 text-slate-200 rounded-xl font-medium text-sm transition-colors"
               >
                 إلغاء
               </button>
@@ -100,11 +100,11 @@ export default function PurchaseModal({ note, onConfirm, onCancel }: PurchaseMod
         {/* Step 2 — WhatsApp */}
         {step === 'whatsapp' && (
           <>
-            <div className="bg-amber-50 border border-amber-100 rounded-xl p-4 text-sm text-amber-800 flex gap-3">
+            <div className="bg-amber-500/10 border border-amber-500/20 rounded-xl p-4 text-sm text-amber-300 flex gap-3">
               <span className="text-lg">⏳</span>
               <div>
                 <p className="font-semibold mb-1">تم إنشاء الطلب بنجاح!</p>
-                <p className="text-xs text-amber-700 leading-relaxed">
+                <p className="text-xs text-amber-400/80 leading-relaxed">
                   اضغط الزر أدناه لإرسال تفاصيل الدفع للأدمن عبر واتساب.
                   بعد تأكيد الأدمن، سيظهر زر <strong>تحميل</strong> على المذكرة تلقائياً.
                 </p>
@@ -125,7 +125,7 @@ export default function PurchaseModal({ note, onConfirm, onCancel }: PurchaseMod
 
             <button
               onClick={onCancel}
-              className="w-full py-2 text-sm text-gray-500 hover:text-gray-700 transition-colors"
+              className="w-full py-2 text-sm text-slate-500 hover:text-slate-300 transition-colors"
             >
               إغلاق
             </button>

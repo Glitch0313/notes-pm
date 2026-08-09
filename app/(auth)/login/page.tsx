@@ -40,11 +40,11 @@ function LoginForm() {
 
   return (
     <div dir="rtl">
-      <h1 className="text-2xl font-bold text-gray-900 mb-1">مرحباً بعودتك</h1>
-      <p className="text-gray-500 text-sm mb-6">سجّل دخولك للوصول إلى مذكراتك</p>
+      <h1 className="text-2xl font-bold text-white mb-1">مرحباً بعودتك</h1>
+      <p className="text-slate-400 text-sm mb-6">سجّل دخولك للوصول إلى مذكراتك</p>
 
       {error && (
-        <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg flex items-center gap-2 text-red-700 text-sm">
+        <div className="mb-4 p-3 bg-red-500/10 border border-red-500/20 rounded-lg flex items-center gap-2 text-red-400 text-sm">
           <svg className="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
           </svg>
@@ -54,7 +54,7 @@ function LoginForm() {
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="email" className="block text-sm font-medium text-slate-300 mb-1">
             البريد الإلكتروني
           </label>
           <input
@@ -65,16 +65,16 @@ function LoginForm() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="example@email.com"
-            className="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition text-sm"
+            className="w-full px-4 py-2.5 bg-white/[0.04] border border-white/10 rounded-lg text-slate-100 placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500/50 transition text-sm"
           />
         </div>
 
         <div>
           <div className="flex justify-between items-center mb-1">
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="password" className="block text-sm font-medium text-slate-300">
               كلمة المرور
             </label>
-            <Link href="/forgot-password" className="text-xs text-indigo-600 hover:text-indigo-700">
+            <Link href="/forgot-password" className="text-xs text-indigo-400 hover:text-indigo-300">
               نسيت كلمة المرور؟
             </Link>
           </div>
@@ -87,12 +87,12 @@ function LoginForm() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="••••••••"
-              className="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition text-sm pl-10"
+              className="w-full px-4 py-2.5 bg-white/[0.04] border border-white/10 rounded-lg text-slate-100 placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500/50 transition text-sm pl-10"
             />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+              className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300"
               tabIndex={-1}
             >
               {showPassword ? (
@@ -112,7 +112,7 @@ function LoginForm() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-400 text-white font-semibold py-2.5 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center gap-2 text-sm"
+          className="w-full bg-indigo-500 hover:bg-indigo-400 disabled:bg-indigo-500/40 text-white font-semibold py-2.5 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center gap-2 text-sm"
         >
           {loading ? (
             <>
@@ -128,9 +128,9 @@ function LoginForm() {
         </button>
       </form>
 
-      <p className="mt-6 text-center text-sm text-gray-500">
+      <p className="mt-6 text-center text-sm text-slate-500">
         ليس لديك حساب؟{' '}
-        <Link href="/register" className="text-indigo-600 hover:text-indigo-700 font-medium">
+        <Link href="/register" className="text-indigo-400 hover:text-indigo-300 font-medium">
           إنشاء حساب جديد
         </Link>
       </p>
@@ -140,7 +140,7 @@ function LoginForm() {
 
 export default function LoginPage() {
   return (
-    <Suspense fallback={<div className="text-center py-8 text-gray-400 text-sm">جارٍ التحميل...</div>}>
+    <Suspense fallback={<div className="text-center py-8 text-slate-500 text-sm">جارٍ التحميل...</div>}>
       <LoginForm />
     </Suspense>
   )

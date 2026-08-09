@@ -19,8 +19,8 @@ function ResetPasswordForm() {
   if (!token) {
     return (
       <div dir="rtl" className="text-center">
-        <p className="text-red-600 font-medium mb-4">رابط إعادة التعيين غير صالح.</p>
-        <Link href="/forgot-password" className="text-indigo-600 hover:text-indigo-700 font-medium text-sm">
+        <p className="text-red-400 font-medium mb-4">رابط إعادة التعيين غير صالح.</p>
+        <Link href="/forgot-password" className="text-indigo-400 hover:text-indigo-300 font-medium text-sm">
           طلب رابط جديد
         </Link>
       </div>
@@ -65,13 +65,13 @@ function ResetPasswordForm() {
   if (success) {
     return (
       <div dir="rtl" className="text-center">
-        <div className="w-14 h-14 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-          <svg className="w-7 h-7 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <div className="w-14 h-14 bg-emerald-500/10 border border-emerald-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg className="w-7 h-7 text-emerald-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
           </svg>
         </div>
-        <h1 className="text-xl font-bold text-gray-900 mb-2">تم تحديث كلمة المرور!</h1>
-        <p className="text-gray-500 text-sm">سيتم توجيهك لصفحة تسجيل الدخول...</p>
+        <h1 className="text-xl font-bold text-white mb-2">تم تحديث كلمة المرور!</h1>
+        <p className="text-slate-400 text-sm">سيتم توجيهك لصفحة تسجيل الدخول...</p>
       </div>
     )
   }
@@ -82,11 +82,11 @@ function ResetPasswordForm() {
 
   return (
     <div dir="rtl">
-      <h1 className="text-2xl font-bold text-gray-900 mb-1">إعادة تعيين كلمة المرور</h1>
-      <p className="text-gray-500 text-sm mb-6">أدخل كلمة مرور جديدة لحسابك.</p>
+      <h1 className="text-2xl font-bold text-white mb-1">إعادة تعيين كلمة المرور</h1>
+      <p className="text-slate-400 text-sm mb-6">أدخل كلمة مرور جديدة لحسابك.</p>
 
       {error && (
-        <div className="mb-4 p-3 bg-red-50 border border-red-200 rounded-lg text-red-700 text-sm flex items-center gap-2">
+        <div className="mb-4 p-3 bg-red-500/10 border border-red-500/20 rounded-lg text-red-400 text-sm flex items-center gap-2">
           <svg className="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
           </svg>
@@ -96,7 +96,7 @@ function ResetPasswordForm() {
 
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="password" className="block text-sm font-medium text-slate-300 mb-1">
             كلمة المرور الجديدة
           </label>
           <div className="relative">
@@ -107,12 +107,12 @@ function ResetPasswordForm() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder="8 أحرف على الأقل"
-              className="w-full px-4 py-2.5 border border-gray-300 rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition text-sm pl-10"
+              className="w-full px-4 py-2.5 bg-white/[0.04] border border-white/10 rounded-lg text-slate-100 placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500/50 transition text-sm pl-10"
             />
             <button
               type="button"
               onClick={() => setShowPassword(!showPassword)}
-              className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+              className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300"
               tabIndex={-1}
             >
               <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -130,11 +130,11 @@ function ResetPasswordForm() {
               <div className="flex gap-1 mb-1">
                 {[1, 2, 3].map((level) => (
                   <div key={level}
-                    className={`h-1 flex-1 rounded-full transition-colors ${passwordStrength >= level ? strengthColors[passwordStrength] : 'bg-gray-200'}`}
+                    className={`h-1 flex-1 rounded-full transition-colors ${passwordStrength >= level ? strengthColors[passwordStrength] : 'bg-white/10'}`}
                   />
                 ))}
               </div>
-              <p className="text-xs text-gray-500">
+              <p className="text-xs text-slate-500">
                 قوة كلمة المرور: <span className="font-medium">{strengthLabels[passwordStrength]}</span>
               </p>
             </div>
@@ -142,7 +142,7 @@ function ResetPasswordForm() {
         </div>
 
         <div>
-          <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700 mb-1">
+          <label htmlFor="confirmPassword" className="block text-sm font-medium text-slate-300 mb-1">
             تأكيد كلمة المرور
           </label>
           <input
@@ -152,19 +152,19 @@ function ResetPasswordForm() {
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             placeholder="أعد كتابة كلمة المرور"
-            className={`w-full px-4 py-2.5 border rounded-lg text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition text-sm ${
-              confirmPassword && confirmPassword !== password ? 'border-red-300 bg-red-50' : 'border-gray-300'
+            className={`w-full px-4 py-2.5 bg-white/[0.04] border rounded-lg text-slate-100 placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 focus:border-indigo-500/50 transition text-sm ${
+              confirmPassword && confirmPassword !== password ? 'border-red-500/40 bg-red-500/[0.06]' : 'border-white/10'
             }`}
           />
           {confirmPassword && confirmPassword !== password && (
-            <p className="mt-1 text-xs text-red-600">كلمتا المرور غير متطابقتين</p>
+            <p className="mt-1 text-xs text-red-400">كلمتا المرور غير متطابقتين</p>
           )}
         </div>
 
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-indigo-600 hover:bg-indigo-700 disabled:bg-indigo-400 text-white font-semibold py-2.5 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center gap-2 text-sm"
+          className="w-full bg-indigo-500 hover:bg-indigo-400 disabled:bg-indigo-500/40 text-white font-semibold py-2.5 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center gap-2 text-sm"
         >
           {loading ? (
             <>
@@ -185,7 +185,7 @@ function ResetPasswordForm() {
 
 export default function ResetPasswordPage() {
   return (
-    <Suspense fallback={<div className="text-center py-8 text-gray-400 text-sm">جارٍ التحميل...</div>}>
+    <Suspense fallback={<div className="text-center py-8 text-slate-500 text-sm">جارٍ التحميل...</div>}>
       <ResetPasswordForm />
     </Suspense>
   )

@@ -1,0 +1,42 @@
+[
+  {
+    "id": "1r20fii83cd2uc05nihkaf",
+    "userId": "7h05cqbl3ixga7ydtxzhrl",
+    "type": "SUCCESS",
+    "message": "مرحباً بك في NoteVaultPro! ابدأ بإنشاء مذكرتك الأولى.",
+    "createdAt": "2026-07-09T09:00:33.017Z",
+    "updatedAt": "2026-07-09T09:00:33.017Z"
+  },
+  {
+    "id": "og0codl5sjdz6a47ml873b",
+    "userId": "7h05cqbl3ixga7ydtxzhrl",
+    "type": "INFO",
+    "message": "تم نشر مذكرتك \"مقدمة في الذكاء الاصطناعي\" بنجاح.",
+    "createdAt": "2026-07-09T09:00:33.017Z",
+    "updatedAt": "2026-07-09T09:00:33.017Z"
+  },
+  {
+    "id": "xf3qr8tymadki4916v0i2",
+    "userId": "4kyz820slcrfnobdxyx1js",
+    "type": "SUCCESS",
+    "message": "مرحباً بك في NoteVaultPro! ابدأ بإنشاء مذكرتك الأولى.",
+    "createdAt": "2026-07-09T09:00:33.017Z",
+    "updatedAt": "2026-07-09T09:00:33.017Z"
+  },
+  {
+    "id": "16po4iot31gpcx42rfict",
+    "userId": "pcqtj66mfe7v9ltkzo4b8",
+    "type": "INFO",
+    "message": "تم تفعيل حساب الأدمن بنجاح.",
+    "createdAt": "2026-07-09T09:00:33.017Z",
+    "updatedAt": "2026-07-09T09:00:33.017Z"
+  },
+  {
+    "id": "fh86i1y75n5df7uybnbwbd",
+    "userId": "pcqtj66mfe7v9ltkzo4b8",
+    "type": "SUCCESS",
+    "message": "تم حفظ المذكرة \"دليلك الشامل لتحسين الدخل الشخصي وبناء الحرية المالية في عصر الاحتراف\" بنجاح",
+    "createdAt": "2026-08-09T13:44:31.998Z",
+    "updatedAt": "2026-08-09T13:44:31.998Z"
+  }
+]

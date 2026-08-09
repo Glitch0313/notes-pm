@@ -1,0 +1,41 @@
+[
+  {
+    "id": "pcqtj66mfe7v9ltkzo4b8",
+    "email": "admin@notevaultpro.com",
+    "username": "admin",
+    "passwordHash": "$2a$10$BUP4t5p7lO/H69gLB6wVo.yb3WMpK.iTAivaxkvVpU.gLzctqyMpS",
+    "fullName": "مدير النظام",
+    "bio": "مدير منصة NoteVaultPro",
+    "avatarColor": "#dc2626",
+    "role": "ADMIN",
+    "isActive": true,
+    "createdAt": "2026-07-09T09:00:32.867Z",
+    "updatedAt": "2026-07-09T09:00:32.867Z"
+  },
+  {
+    "id": "7h05cqbl3ixga7ydtxzhrl",
+    "email": "ahmed@demo.com",
+    "username": "ahmed_writer",
+    "passwordHash": "$2a$10$dOc1.o6csrXDUW.NzCamhesWu/EGezhBRX3MThKUJYrVFs.sU4yDu",
+    "fullName": "أحمد الكاتب",
+    "bio": "كاتب ومدوّن متخصص في التقنية والعلوم",
+    "avatarColor": "#6366f1",
+    "role": "USER",
+    "isActive": true,
+    "createdAt": "2026-07-09T09:00:32.954Z",
+    "updatedAt": "2026-07-09T09:00:32.954Z"
+  },
+  {
+    "id": "4kyz820slcrfnobdxyx1js",
+    "email": "sara@demo.com",
+    "username": "sara_notes",
+    "passwordHash": "$2a$10$dOc1.o6csrXDUW.NzCamhesWu/EGezhBRX3MThKUJYrVFs.sU4yDu",
+    "fullName": "سارة النوتس",
+    "bio": "أحب الأدب والفلسفة وتدوين الأفكار",
+    "avatarColor": "#ec4899",
+    "role": "USER",
+    "isActive": true,
+    "createdAt": "2026-07-09T09:00:32.965Z",
+    "updatedAt": "2026-07-09T09:00:32.965Z"
+  }
+]

@@ -87,7 +87,7 @@ export default function AdminPage() {
   const [reviewingId, setReviewingId] = useState<string | null>(null)
 
   // settings state
-  const [settings, setSettings]       = useState<SiteSettings>({ site_name: '', site_description: '', admin_whatsapp: '', require_approval: 'false', allow_register: 'true', gemini_api_key: '', gemini_model: 'gemini-1.5-flash' })
+  const [settings, setSettings]       = useState<SiteSettings>({ site_name: '', site_description: '', admin_whatsapp: '', require_approval: 'false', allow_register: 'true', gemini_api_key: '', gemini_model: 'gemini-3.5-flash-lite' })
   const [settingsSaving, setSettingsSaving] = useState(false)
   const [settingsMsg, setSettingsMsg]   = useState('')
   const [testAiMsg, setTestAiMsg]       = useState('')
@@ -1262,6 +1262,7 @@ export default function AdminPage() {
                 className="border border-gray-200 rounded-xl px-3 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-300 font-mono text-gray-700"
                 dir="ltr"
               >
+                <option value="gemini-3.5-flash-lite">gemini-3.5-flash-lite (خفيف وسريع جداً)</option>
                 <option value="gemini-1.5-flash">gemini-1.5-flash (سريع ومستقر)</option>
                 <option value="gemini-2.5-flash">gemini-2.5-flash (أحدث المتاح)</option>
                 <option value="gemini-1.5-pro">gemini-1.5-pro (أكثر دقة واحترافية)</option>

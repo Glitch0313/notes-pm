@@ -35,6 +35,22 @@ const REGULAR_PROMPTS: Record<RegularAction, (content: string, title?: string, s
 
 
 
+function parseJsonFromLlm(raw: string): any {
+  let cleaned = raw.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/, '').trim()
+  try {
+    return JSON.parse(cleaned)
+  } catch {
+    // Sanitize unescaped control characters (newlines, carriage returns, tabs) inside string literals
+    const fixed = cleaned.replace(/"(?:[^"\\]|\\[\s\S]|[\r\n])*"/g, (match) => {
+      return match
+        .replace(/\n/g, '\\n')
+        .replace(/\r/g, '\\r')
+        .replace(/\t/g, '\\t')
+    })
+    return JSON.parse(fixed)
+  }
+}
+
 function stripHtml(html: string): string {
   return html.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim()
 }
@@ -90,17 +106,28 @@ export async function POST(request: NextRequest) {
   }
 
   const genAIClient = new GoogleGenerativeAI(apiKey)
-  const currentModelStr = settingsMap.gemini_model || 'gemini-1.5-flash'
+  const currentModelStr = settingsMap.gemini_model || 'gemini-3.5-flash-lite'
   
   const primaryModel = genAIClient.getGenerativeModel({ model: currentModelStr })
   const fallbackModel = genAIClient.getGenerativeModel({ model: 'gemini-2.5-flash' })
 
-  async function generateContentWithFallback(prompt: string) {
+  const jsonPrimaryModel = genAIClient.getGenerativeModel({
+    model: currentModelStr,
+    generationConfig: { responseMimeType: 'application/json' },
+  })
+  const jsonFallbackModel = genAIClient.getGenerativeModel({
+    model: 'gemini-2.5-flash',
+    generationConfig: { responseMimeType: 'application/json' },
+  })
+
+  async function generateContentWithFallback(prompt: string, isJson: boolean = false) {
+    const pModel = isJson ? jsonPrimaryModel : primaryModel
+    const fModel = isJson ? jsonFallbackModel : fallbackModel
     try {
-      return await primaryModel.generateContent(prompt)
+      return await pModel.generateContent(prompt)
     } catch (error: any) {
       console.warn('[ai/assist] Primary model failed (possibly high demand), trying fallback:', error.message)
-      return await fallbackModel.generateContent(prompt)
+      return await fModel.generateContent(prompt)
     }
   }
 
@@ -109,13 +136,9 @@ export async function POST(request: NextRequest) {
     const resolvedTopic = topic?.trim() || 'موضوع مثير للاهتمام في عالم التقنية والمعرفة'
 
     try {
-      const response = await generateContentWithFallback(buildAutofillPrompt(resolvedTopic, siteContext))
-      let raw = response.response.text().trim()
-
-      // Strip markdown code block if Gemini wraps in ```json ... ```
-      raw = raw.replace(/^```(?:json)?\s*/i, '').replace(/\s*```$/, '').trim()
-
-      const parsed = JSON.parse(raw)
+      const response = await generateContentWithFallback(buildAutofillPrompt(resolvedTopic, siteContext), true)
+      const raw = response.response.text().trim()
+      const parsed = parseJsonFromLlm(raw)
 
       const category = VALID_CATEGORIES.includes(parsed.category) ? parsed.category : 'GENERAL'
 

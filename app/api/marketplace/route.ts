@@ -22,6 +22,7 @@ function toPublicNoteDTO(note: any): NoteDTO {
     coverImage: note.coverImage ?? null,
     reviewStatus: note.reviewStatus,
     reviewNote: note.reviewNote ?? null,
+    canShare: note.canShare,
     createdAt: note.createdAt.toISOString(),
     updatedAt: note.updatedAt.toISOString(),
     author: {

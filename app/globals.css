@@ -461,3 +461,90 @@ body {
 .dashboard-dark .recharts-legend-item-text {
   color: #cbd5e1 !important;
 }
+
+/* ── Premium Navbar Animations & Utilities ─────────────────────── */
+@keyframes gradient-x {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes navbar-glow {
+  0%, 100% {
+    box-shadow: 0 4px 24px -1px rgba(99, 102, 241, 0.15), 0 0 20px -2px rgba(139, 92, 246, 0.05);
+  }
+  50% {
+    box-shadow: 0 4px 30px -1px rgba(99, 102, 241, 0.25), 0 0 30px -2px rgba(139, 92, 246, 0.15);
+  }
+}
+
+@keyframes logo-pulse {
+  0%, 100% {
+    transform: scale(1);
+    filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.4));
+  }
+  50% {
+    transform: scale(1.03);
+    filter: drop-shadow(0 0 16px rgba(139, 92, 246, 0.7));
+  }
+}
+
+.animate-gradient-x {
+  background-size: 200% 200%;
+  animation: gradient-x 6s ease infinite;
+}
+
+.animate-navbar-glow {
+  animation: navbar-glow 4s ease-in-out infinite;
+}
+
+.animate-logo-pulse {
+  animation: logo-pulse 3s ease-in-out infinite;
+}
+
+/* Glassmorphic border glow */
+.glass-border-glow {
+  position: relative;
+}
+.glass-border-glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.15), rgba(255,255,255,0.03) 40%, rgba(99,102,241,0.1) 70%, rgba(139,92,246,0.2));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* ── Mobile App Native Experience Helpers ─────────────────────── */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  html, body {
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior-y: none;
+  }
+}
+
