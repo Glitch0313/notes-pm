@@ -4,31 +4,50 @@ import path from 'path'
 
 const DB_DIR = path.join(process.cwd(), 'db')
 
+const inMemoryTables: Record<string, any[]> = {}
+
 // Helper functions for JSON database operations
 function readTable(tableName: string): any[] {
-  if (!fs.existsSync(DB_DIR)) {
-    fs.mkdirSync(DB_DIR, { recursive: true })
+  if (inMemoryTables[tableName]) {
+    return inMemoryTables[tableName]
   }
   const filePath = path.join(DB_DIR, `${tableName}.json`)
   if (!fs.existsSync(filePath)) {
-    fs.writeFileSync(filePath, '[]', 'utf-8')
+    try {
+      if (!fs.existsSync(DB_DIR)) fs.mkdirSync(DB_DIR, { recursive: true })
+      fs.writeFileSync(filePath, '[]', 'utf-8')
+    } catch {
+      // In read-only serverless env, fallback gracefully
+    }
+    inMemoryTables[tableName] = []
     return []
   }
   try {
     const content = fs.readFileSync(filePath, 'utf-8')
-    return JSON.parse(content)
+    let items = JSON.parse(content)
+    if (tableName === 'User' && Array.isArray(items)) {
+      items = items.map(item => ({ isActive: true, ...item }))
+    }
+    inMemoryTables[tableName] = items
+    return items
   } catch (e) {
     console.error(`Error reading table ${tableName}:`, e)
+    inMemoryTables[tableName] = []
     return []
   }
 }
 
 function writeTable(tableName: string, data: any[]) {
-  if (!fs.existsSync(DB_DIR)) {
-    fs.mkdirSync(DB_DIR, { recursive: true })
+  inMemoryTables[tableName] = data
+  try {
+    if (!fs.existsSync(DB_DIR)) {
+      fs.mkdirSync(DB_DIR, { recursive: true })
+    }
+    const filePath = path.join(DB_DIR, `${tableName}.json`)
+    fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8')
+  } catch (e) {
+    console.warn(`[prisma] Could not write ${tableName}.json to filesystem (read-only mode), stored in memory:`, e)
   }
-  const filePath = path.join(DB_DIR, `${tableName}.json`)
-  fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8')
 }
 
 function cuid(): string {

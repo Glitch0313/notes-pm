@@ -31,18 +31,24 @@ export async function PUT(request: NextRequest) {
   try { body = await request.json() }
   catch { return NextResponse.json({ success: false, error: 'بيانات غير صالحة' }, { status: 400 }) }
 
-  await Promise.all(
-    Object.entries(body).map(([key, value]) =>
-      prisma.setting.upsert({
-        where: { key },
-        update: { value: String(value) },
-        create: { key, value: String(value) },
-      })
-    )
-  )
+  try {
+    for (const [key, value] of Object.entries(body)) {
+      if (value !== undefined && value !== null) {
+        await (prisma as any).setting.upsert({
+          where: { key },
+          update: { value: String(value) },
+          create: { key, value: String(value) },
+        })
+      }
+    }
 
-  // sync whatsapp to runtime env
-  if (body.admin_whatsapp) process.env.ADMIN_WHATSAPP_NUMBER = body.admin_whatsapp
+    // sync to runtime env
+    if (body.admin_whatsapp) process.env.ADMIN_WHATSAPP_NUMBER = body.admin_whatsapp
+    if (body.gemini_api_key) process.env.GEMINI_API_KEY = body.gemini_api_key
 
-  return NextResponse.json({ success: true, data: { message: 'تم حفظ الإعدادات' } })
+    return NextResponse.json({ success: true, data: { message: 'تم حفظ الإعدادات' } })
+  } catch (err: any) {
+    console.error('[admin/settings] Save settings error:', err)
+    return NextResponse.json({ success: false, error: err?.message || 'تعذّر حفظ الإعدادات' }, { status: 500 })
+  }
 }
