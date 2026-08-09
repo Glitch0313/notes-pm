@@ -42,11 +42,11 @@ const VISIBILITY_LABELS: Record<string, string> = { PRIVATE: 'خاصة', PUBLIC:
 
 function StatCard({ label, value, icon, color }: { label: string; value: number; icon: string; color: string }) {
   return (
-    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-5 flex items-center gap-4 hover:shadow-md transition-shadow">
-      <div className={`w-12 h-12 rounded-xl flex items-center justify-center text-2xl ${color} shadow-sm`}>{icon}</div>
-      <div>
-        <p className="text-sm text-gray-500">{label}</p>
-        <p className="text-2xl font-bold text-gray-900">{value.toLocaleString('ar-SA')}</p>
+    <div className="bg-white rounded-2xl border border-gray-100 shadow-sm p-3.5 sm:p-5 flex items-center gap-3 sm:gap-4 hover:shadow-md transition-shadow">
+      <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center text-xl sm:text-2xl ${color} shadow-sm shrink-0`}>{icon}</div>
+      <div className="min-w-0">
+        <p className="text-xs sm:text-sm text-gray-500 truncate">{label}</p>
+        <p className="text-lg sm:text-2xl font-bold text-gray-900 truncate">{value.toLocaleString('ar-SA')}</p>
       </div>
     </div>
   )
@@ -459,19 +459,19 @@ export default function AdminPage() {
       {/* Header */}
       <div className="flex items-center justify-between mb-6 flex-wrap gap-3">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center text-xl">🛡️</div>
+          <div className="w-10 h-10 bg-red-100 rounded-xl flex items-center justify-center text-xl shrink-0">🛡️</div>
           <div>
-            <h1 className="text-2xl font-bold text-gray-900">لوحة الأدمن</h1>
-            <p className="text-sm text-gray-500">إدارة المنصة والمستخدمين</p>
+            <h1 className="text-xl sm:text-2xl font-bold text-gray-900">لوحة الأدمن</h1>
+            <p className="text-xs sm:text-sm text-gray-500">إدارة المنصة والمستخدمين</p>
           </div>
         </div>
         {/* Format Notes button */}
-        <div className="flex items-center gap-3">
-          {formatMsg && <span className="text-sm text-green-700 bg-green-50 border border-green-100 px-3 py-1.5 rounded-xl">{formatMsg}</span>}
+        <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto justify-between sm:justify-end">
+          {formatMsg && <span className="text-xs sm:text-sm text-green-700 bg-green-50 border border-green-100 px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-xl">{formatMsg}</span>}
           <button
             onClick={handleFormatNotes}
             disabled={formatting}
-            className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-xl text-sm font-medium hover:bg-indigo-700 disabled:opacity-60 transition"
+            className="flex items-center justify-center gap-2 px-3.5 py-2 bg-indigo-600 text-white rounded-xl text-xs sm:text-sm font-medium hover:bg-indigo-700 disabled:opacity-60 transition shadow-sm active:scale-95"
           >
             {formatting ? '⏳' : '✨'} تنسيق تلقائي للنوتس
           </button>
@@ -479,10 +479,10 @@ export default function AdminPage() {
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-2 mb-6 border-b border-gray-100">
+      <div className="flex gap-1.5 sm:gap-2 mb-6 border-b border-gray-100 overflow-x-auto no-scrollbar scrollbar-none pb-1 -mx-4 px-4 sm:mx-0 sm:px-0">
         {TABS.map(t => (
           <button key={t.key} onClick={() => setTab(t.key as any)}
-            className={`flex items-center gap-2 px-4 py-2.5 text-sm font-medium rounded-t-xl border-b-2 transition-colors ${
+            className={`flex items-center gap-2 px-3.5 sm:px-4 py-2.5 text-xs sm:text-sm font-medium rounded-t-xl border-b-2 whitespace-nowrap shrink-0 transition-colors ${
               tab === t.key ? 'border-red-500 text-red-600 bg-red-50' : 'border-transparent text-gray-500 hover:text-gray-700'
             }`}
           >
@@ -494,7 +494,7 @@ export default function AdminPage() {
       {/* ── Overview ── */}
       {tab === 'overview' && stats && (
         <div className="space-y-6">
-          <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
             <StatCard label="المستخدمون"  value={stats.totalUsers}       icon="👥" color="bg-blue-50" />
             <StatCard label="المذكرات"    value={stats.totalNotes}       icon="📝" color="bg-indigo-50" />
             <StatCard label="المنشورة"    value={stats.totalPublicNotes} icon="🌐" color="bg-green-50" />
@@ -583,7 +583,7 @@ export default function AdminPage() {
               لا توجد طلبات {payFilter === 'PENDING' ? 'معلقة' : payFilter === 'APPROVED' ? 'مؤكدة' : 'مرفوضة'}
             </div>
           ) : (
-            <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden">
+            <div className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-x-auto">
               <table className="w-full text-sm">
                 <thead className="bg-gray-50 border-b border-gray-100">
                   <tr>
@@ -762,7 +762,7 @@ export default function AdminPage() {
 
           {/* Delete Confirmation Modal */}
           {deleteConfirmUser && (
-            <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+            <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-[60] p-4">
               <div className="bg-white rounded-2xl shadow-xl p-6 max-w-sm w-full" dir="rtl">
                 <h3 className="text-base font-bold text-gray-900 mb-2">تأكيد حذف المستخدم</h3>
                 <p className="text-sm text-gray-500 mb-4">
@@ -1048,7 +1048,7 @@ export default function AdminPage() {
 
           {/* Edit Modal */}
           {dbEditRow && (
-            <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+            <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-[60] p-4">
               <div className="bg-white rounded-2xl shadow-xl p-6 w-full max-w-lg max-h-[90vh] overflow-y-auto" dir="rtl">
                 <div className="flex items-center justify-between mb-5">
                   <h3 className="text-base font-bold text-gray-900">تعديل سجل — {dbTable}</h3>
@@ -1143,7 +1143,7 @@ export default function AdminPage() {
 
           {/* Delete Confirmation Modal */}
           {dbDeleteId && (
-            <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+            <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-[60] p-4">
               <div className="bg-white rounded-2xl shadow-xl p-6 max-w-sm w-full" dir="rtl">
                 <h3 className="text-base font-bold text-gray-900 mb-2">تأكيد الحذف</h3>
                 <p className="text-sm text-gray-500 mb-5">
