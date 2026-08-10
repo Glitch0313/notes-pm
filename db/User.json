@@ -1,5 +1,6 @@
 [
   {
+    "isActive": true,
     "id": "pcqtj66mfe7v9ltkzo4b8",
     "email": "admin@notevaultpro.com",
     "username": "admin",
@@ -8,11 +9,11 @@
     "bio": "مدير منصة NoteVaultPro",
     "avatarColor": "#dc2626",
     "role": "ADMIN",
-    "isActive": true,
     "createdAt": "2026-07-09T09:00:32.867Z",
-    "updatedAt": "2026-07-09T09:00:32.867Z"
+    "updatedAt": "2026-08-10T07:19:30.679Z"
   },
   {
+    "isActive": true,
     "id": "7h05cqbl3ixga7ydtxzhrl",
     "email": "ahmed@demo.com",
     "username": "ahmed_writer",
@@ -21,11 +22,11 @@
     "bio": "كاتب ومدوّن متخصص في التقنية والعلوم",
     "avatarColor": "#6366f1",
     "role": "USER",
-    "isActive": true,
     "createdAt": "2026-07-09T09:00:32.954Z",
-    "updatedAt": "2026-07-09T09:00:32.954Z"
+    "updatedAt": "2026-08-10T07:19:30.761Z"
   },
   {
+    "isActive": true,
     "id": "4kyz820slcrfnobdxyx1js",
     "email": "sara@demo.com",
     "username": "sara_notes",
@@ -34,8 +35,7 @@
     "bio": "أحب الأدب والفلسفة وتدوين الأفكار",
     "avatarColor": "#ec4899",
     "role": "USER",
-    "isActive": true,
     "createdAt": "2026-07-09T09:00:32.965Z",
-    "updatedAt": "2026-07-09T09:00:32.965Z"
+    "updatedAt": "2026-08-10T07:19:30.762Z"
   }
 ]
