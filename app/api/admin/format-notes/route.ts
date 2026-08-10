@@ -45,7 +45,7 @@ export async function POST(request: NextRequest) {
   // جلب كل النوتس التي محتواها نص عادي (لا يحتوي HTML)
   const notes = await prisma.note.findMany({ select: { id: true, content: true } })
 
-  const toUpdate = notes.filter((n) => !/<[a-z][\s\S]*>/i.test(n.content))
+  const toUpdate = notes.filter((n: any) => !/<[a-z][\s\S]*>/i.test(n.content))
 
   if (toUpdate.length === 0) {
     return NextResponse.json({ success: true, data: { formatted: 0, message: 'كل النوتس منسقة بالفعل' } })
@@ -53,7 +53,7 @@ export async function POST(request: NextRequest) {
 
   // تحديث دفعي
   await Promise.all(
-    toUpdate.map((n) =>
+    toUpdate.map((n: any) =>
       prisma.note.update({
         where: { id: n.id },
         data: { content: plainToHtml(n.content) },

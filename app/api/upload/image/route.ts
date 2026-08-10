@@ -25,14 +25,26 @@ export async function POST(request: NextRequest) {
   if (!ALLOWED.includes(file.type)) return NextResponse.json({ success: false, error: 'نوع الملف غير مدعوم — JPG، PNG، WebP، GIF فقط' }, { status: 400 })
   if (file.size > MAX_SIZE) return NextResponse.json({ success: false, error: 'حجم الصورة يتجاوز 5MB' }, { status: 400 })
 
-  const ext      = file.type.split('/')[1].replace('jpeg', 'jpg')
-  const filename = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`
-  const uploadDir = join(process.cwd(), 'public', 'uploads')
-
-  if (!existsSync(uploadDir)) await mkdir(uploadDir, { recursive: true })
-
   const buffer = Buffer.from(await file.arrayBuffer())
-  await writeFile(join(uploadDir, filename), buffer)
 
-  return NextResponse.json({ success: true, data: { url: `/uploads/${filename}` } })
+  // If deployed on Vercel or read-only serverless environment, use Base64 Data URL fallback
+  if (process.env.VERCEL || process.env.NODE_ENV === 'production') {
+    const base64Url = `data:${file.type};base64,${buffer.toString('base64')}`
+    return NextResponse.json({ success: true, data: { url: base64Url } })
+  }
+
+  try {
+    const ext      = file.type.split('/')[1].replace('jpeg', 'jpg')
+    const filename = `${Date.now()}-${Math.random().toString(36).slice(2)}.${ext}`
+    const uploadDir = join(process.cwd(), 'public', 'uploads')
+
+    if (!existsSync(uploadDir)) await mkdir(uploadDir, { recursive: true })
+    await writeFile(join(uploadDir, filename), buffer)
+    return NextResponse.json({ success: true, data: { url: `/uploads/${filename}` } })
+  } catch (err) {
+    // If disk write fails, fallback to base64 Data URL
+    const base64Url = `data:${file.type};base64,${buffer.toString('base64')}`
+    return NextResponse.json({ success: true, data: { url: base64Url } })
+  }
 }
+

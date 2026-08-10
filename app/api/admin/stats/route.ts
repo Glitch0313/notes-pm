@@ -55,11 +55,11 @@ export async function GET(request: NextRequest) {
       totalPublicNotes,
       totalDownloads: totalDownloadsAgg._sum.downloads ?? 0,
       totalPurchases,
-      recentUsers: recentUsers.map(u => ({
+      recentUsers: recentUsers.map((u: any) => ({
         ...u,
         createdAt: u.createdAt.toISOString(),
       })),
-      recentNotes: recentNotes.map(n => ({
+      recentNotes: recentNotes.map((n: any) => ({
         ...n,
         createdAt: n.createdAt.toISOString(),
       })),

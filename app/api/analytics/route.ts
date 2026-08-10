@@ -91,10 +91,10 @@ export async function GET(request: NextRequest) {
         publicNotes,
         forSaleNotes,
         totalDownloads: downloadsAgg._sum.downloads ?? 0,
-        byCategory: byCategoryRaw.map((r) => ({ category: r.category, count: r._count.id })),
-        byVisibility: byVisibilityRaw.map((r) => ({ visibility: r.visibility, count: r._count.id })),
+        byCategory: byCategoryRaw.map((r: any) => ({ category: r.category, count: r._count.id })),
+        byVisibility: byVisibilityRaw.map((r: any) => ({ visibility: r.visibility, count: r._count.id })),
         dailyActivity,
-        topDownloaded: topDownloaded.map((n) => ({ id: n.id, title: n.title, downloads: n.downloads })),
+        topDownloaded: topDownloaded.map((n: any) => ({ id: n.id, title: n.title, downloads: n.downloads })),
       },
     })
   } catch (error) {

@@ -55,7 +55,7 @@ export async function GET(request: NextRequest) {
   return NextResponse.json({
     success: true,
     data: {
-      users: users.map(u => ({ ...u, createdAt: u.createdAt.toISOString() })),
+      users: users.map((u: any) => ({ ...u, createdAt: u.createdAt.toISOString() })),
       total, page, limit,
     },
   })

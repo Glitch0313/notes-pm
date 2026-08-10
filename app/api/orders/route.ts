@@ -24,7 +24,7 @@ export async function GET(request: NextRequest) {
       },
     })
 
-    const orders: OrderItem[] = purchases.map((p) => ({
+    const orders: OrderItem[] = purchases.map((p: any) => ({
       id: p.id,
       noteTitle: p.note.title,
       buyerUsername: p.buyer.username,

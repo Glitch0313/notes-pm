@@ -346,7 +346,7 @@ export default async function HomePage() {
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {featuredNotes.map((note, i) => {
+              {featuredNotes.map((note: any, i: number) => {
                 const authorName = note.author.fullName || note.author.username
                 const categoryLabel = CATEGORY_LABELS[note.category as Category] ?? note.category
                 const catColor = CATEGORY_COLORS[note.category] ?? 'bg-white/10 text-slate-300 border-white/10'

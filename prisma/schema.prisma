@@ -1,12 +1,11 @@
 // prisma/schema.prisma
 
 generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["fullTextIndex"]
+  provider = "prisma-client-js"
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -40,7 +39,7 @@ model User {
 model Note {
   id         String     @id @default(cuid())
   title      String
-  content    String     @db.LongText
+  content    String     @db.Text
   category   Category   @default(GENERAL)
   tags       String?
   coverColor String     @default("#6366f1")
@@ -65,7 +64,6 @@ model Note {
   @@index([authorId])
   @@index([isPublic])
   @@index([category])
-  @@fulltext([title, content])
 }
 
 model Notification {

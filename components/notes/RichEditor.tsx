@@ -2,7 +2,6 @@
 
 import { useEditor, EditorContent } from '@tiptap/react'
 import StarterKit from '@tiptap/starter-kit'
-import Underline from '@tiptap/extension-underline'
 import Placeholder from '@tiptap/extension-placeholder'
 import CharacterCount from '@tiptap/extension-character-count'
 import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight'
@@ -51,7 +50,6 @@ export default function RichEditor({ content, onChange, placeholder = 'اكتب 
       StarterKit.configure({
         codeBlock: false,
       }),
-      Underline,
       Placeholder.configure({ placeholder }),
       CharacterCount,
       CodeBlockLowlight.configure({ lowlight }),

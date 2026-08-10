@@ -649,5 +649,40 @@ export class JSONDatabase {
   }
 }
 
-export const prisma = new JSONDatabase();
-export default prisma;
+const globalForPrisma = globalThis as unknown as {
+  prisma: any
+}
+
+const dbUrl = process.env.DATABASE_URL || process.env.POSTGRES_PRISMA_URL || process.env.POSTGRES_URL || process.env.POSTGRES_URL_NON_POOLING
+
+let prismaInstance: any
+
+if (dbUrl) {
+  try {
+    const { PrismaClient } = require('@prisma/client')
+    prismaInstance = globalForPrisma.prisma ?? new PrismaClient({
+      datasources: {
+        db: {
+          url: dbUrl,
+        },
+      },
+    })
+    if (process.env.NODE_ENV !== 'production') {
+      globalForPrisma.prisma = prismaInstance
+    }
+  } catch (e) {
+    console.error('[prisma Error] Failed to initialize PrismaClient:', e)
+    prismaInstance = new JSONDatabase()
+  }
+} else {
+  if (process.env.VERCEL) {
+    console.warn('[prisma WARNING] Running on Vercel without DATABASE_URL or POSTGRES_PRISMA_URL!')
+  }
+  prismaInstance = new JSONDatabase()
+}
+
+export const prisma: any = prismaInstance
+export default prisma
+
+
+

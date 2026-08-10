@@ -38,6 +38,11 @@ export async function middleware(request: NextRequest) {
   const isProtectedApi = PROTECTED_API_PREFIXES.some((p) => pathname.startsWith(p))
   const isProtectedPage = PROTECTED_PAGE_PREFIXES.some((p) => pathname.startsWith(p))
 
+  // Allow GET /api/notes/[id] publicly so marketplace & shared links can view public notes
+  if (request.method === 'GET' && pathname.match(/^\/api\/notes\/[^\/]+$/)) {
+    return NextResponse.next()
+  }
+
   if (!isProtectedApi && !isProtectedPage) {
     return NextResponse.next()
   }
