@@ -28,7 +28,8 @@
     "downloads": 42,
     "authorId": "7h05cqbl3ixga7ydtxzhrl",
     "createdAt": "2026-08-10T07:19:30.763Z",
-    "updatedAt": "2026-08-10T07:19:30.763Z"
+    "updatedAt": "2026-08-10T07:23:57.464Z",
+    "isActive": true
   },
   {
     "id": "seed-أسرار-التع",
@@ -43,7 +44,8 @@
     "downloads": 28,
     "authorId": "7h05cqbl3ixga7ydtxzhrl",
     "createdAt": "2026-08-10T07:19:30.764Z",
-    "updatedAt": "2026-08-10T07:19:30.764Z"
+    "updatedAt": "2026-08-10T07:23:57.465Z",
+    "isActive": true
   },
   {
     "id": "seed-تأملات-في-",
@@ -57,7 +59,8 @@
     "downloads": 67,
     "authorId": "4kyz820slcrfnobdxyx1js",
     "createdAt": "2026-08-10T07:19:30.765Z",
-    "updatedAt": "2026-08-10T07:19:30.765Z"
+    "updatedAt": "2026-08-10T07:23:57.467Z",
+    "isActive": true
   },
   {
     "id": "seed-دليل-Next.",
@@ -72,7 +75,8 @@
     "downloads": 89,
     "authorId": "7h05cqbl3ixga7ydtxzhrl",
     "createdAt": "2026-08-10T07:19:30.765Z",
-    "updatedAt": "2026-08-10T07:19:30.765Z"
+    "updatedAt": "2026-08-10T07:23:57.476Z",
+    "isActive": true
   },
   {
     "id": "seed-قصيدة-في-ا",
@@ -86,7 +90,8 @@
     "downloads": 34,
     "authorId": "4kyz820slcrfnobdxyx1js",
     "createdAt": "2026-08-10T07:19:30.766Z",
-    "updatedAt": "2026-08-10T07:19:30.766Z"
+    "updatedAt": "2026-08-10T07:23:57.476Z",
+    "isActive": true
   },
   {
     "id": "seed-أساسيات-قو",
@@ -100,6 +105,7 @@
     "downloads": 55,
     "authorId": "pcqtj66mfe7v9ltkzo4b8",
     "createdAt": "2026-08-10T07:19:30.769Z",
-    "updatedAt": "2026-08-10T07:19:30.769Z"
+    "updatedAt": "2026-08-10T07:23:57.487Z",
+    "isActive": true
   }
 ]
