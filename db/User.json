@@ -10,7 +10,7 @@
     "avatarColor": "#dc2626",
     "role": "ADMIN",
     "createdAt": "2026-07-09T09:00:32.867Z",
-    "updatedAt": "2026-08-10T07:23:57.379Z"
+    "updatedAt": "2026-08-10T07:30:58.110Z"
   },
   {
     "isActive": true,
@@ -23,7 +23,7 @@
     "avatarColor": "#6366f1",
     "role": "USER",
     "createdAt": "2026-07-09T09:00:32.954Z",
-    "updatedAt": "2026-08-10T07:23:57.462Z"
+    "updatedAt": "2026-08-10T07:30:58.190Z"
   },
   {
     "isActive": true,
@@ -36,6 +36,6 @@
     "avatarColor": "#ec4899",
     "role": "USER",
     "createdAt": "2026-07-09T09:00:32.965Z",
-    "updatedAt": "2026-08-10T07:23:57.463Z"
+    "updatedAt": "2026-08-10T07:30:58.191Z"
   }
 ]

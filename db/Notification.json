@@ -166,5 +166,37 @@
     "message": "تم تفعيل حساب الأدمن بنجاح.",
     "createdAt": "2026-08-10T07:23:57.490Z",
     "updatedAt": "2026-08-10T07:23:57.490Z"
+  },
+  {
+    "id": "qxrpqqtdefis1nz4msa5",
+    "userId": "7h05cqbl3ixga7ydtxzhrl",
+    "type": "SUCCESS",
+    "message": "مرحباً بك في NoteVaultPro! ابدأ بإنشاء مذكرتك الأولى.",
+    "createdAt": "2026-08-10T07:30:58.207Z",
+    "updatedAt": "2026-08-10T07:30:58.207Z"
+  },
+  {
+    "id": "01m2einsxguzsy8hbktb63",
+    "userId": "7h05cqbl3ixga7ydtxzhrl",
+    "type": "INFO",
+    "message": "تم نشر مذكرتك \"مقدمة في الذكاء الاصطناعي\" بنجاح.",
+    "createdAt": "2026-08-10T07:30:58.207Z",
+    "updatedAt": "2026-08-10T07:30:58.207Z"
+  },
+  {
+    "id": "vf9o8086hmdrfcy0jueu7",
+    "userId": "4kyz820slcrfnobdxyx1js",
+    "type": "SUCCESS",
+    "message": "مرحباً بك في NoteVaultPro! ابدأ بإنشاء مذكرتك الأولى.",
+    "createdAt": "2026-08-10T07:30:58.207Z",
+    "updatedAt": "2026-08-10T07:30:58.207Z"
+  },
+  {
+    "id": "ukps3o5ym2fcuglqxwi89",
+    "userId": "pcqtj66mfe7v9ltkzo4b8",
+    "type": "INFO",
+    "message": "تم تفعيل حساب الأدمن بنجاح.",
+    "createdAt": "2026-08-10T07:30:58.207Z",
+    "updatedAt": "2026-08-10T07:30:58.207Z"
   }
 ]

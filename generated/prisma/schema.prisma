@@ -1,0 +1,195 @@
+// prisma/schema.prisma
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(cuid())
+  username     String   @unique
+  email        String   @unique
+  passwordHash String
+  fullName     String?
+  bio          String?  @db.Text
+  avatarColor  String   @default("#6366f1")
+  role         Role     @default(USER)
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  paymentInfo Json?
+
+  notes          Note[]
+  notifications  Notification[]
+  purchases      Purchase[]      @relation("BuyerPurchases")
+  sales          Purchase[]      @relation("SellerPurchases")
+  passwordResets PasswordReset[]
+  likes          Like[]
+  comments       Comment[]
+
+  @@index([email])
+  @@index([username])
+}
+
+model Note {
+  id           String           @id @default(cuid())
+  title        String
+  content      String           @db.Text
+  category     Category         @default(GENERAL)
+  tags         String?
+  coverColor   String           @default("#6366f1")
+  visibility   Visibility       @default(PRIVATE)
+  price        Decimal?         @db.Decimal(10, 2)
+  downloads    Int              @default(0)
+  isPinned     Boolean          @default(false)
+  isPublic     Boolean          @default(false)
+  coverImage   String?
+  reviewStatus NoteReviewStatus @default(APPROVED)
+  reviewNote   String?          @db.Text
+  canShare     Boolean          @default(true)
+  createdAt    DateTime         @default(now())
+  updatedAt    DateTime         @updatedAt
+
+  authorId  String
+  author    User       @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  purchases Purchase[]
+  likes     Like[]
+  comments  Comment[]
+
+  @@index([authorId])
+  @@index([isPublic])
+  @@index([category])
+}
+
+model Notification {
+  id        String           @id @default(cuid())
+  type      NotificationType
+  message   String
+  isRead    Boolean          @default(false)
+  createdAt DateTime         @default(now())
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([isRead])
+}
+
+model Purchase {
+  id        String         @id @default(cuid())
+  price     Decimal        @db.Decimal(10, 2)
+  status    PurchaseStatus @default(PENDING)
+  createdAt DateTime       @default(now())
+
+  buyerId String
+  buyer   User   @relation("BuyerPurchases", fields: [buyerId], references: [id], onDelete: Cascade)
+
+  sellerId String
+  seller   User   @relation("SellerPurchases", fields: [sellerId], references: [id], onDelete: Cascade)
+
+  noteId String
+  note   Note   @relation(fields: [noteId], references: [id], onDelete: Cascade)
+
+  @@unique([buyerId, noteId])
+  @@index([buyerId])
+  @@index([noteId])
+}
+
+enum Category {
+  GENERAL
+  TECHNOLOGY
+  SCIENCE
+  LITERATURE
+  PHILOSOPHY
+  HISTORY
+  ART
+  BUSINESS
+}
+
+enum Visibility {
+  PRIVATE
+  PUBLIC
+  FOR_SALE
+}
+
+enum NotificationType {
+  INFO
+  SUCCESS
+  ERROR
+  WARNING
+  PURCHASE
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum PurchaseStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum NoteReviewStatus {
+  APPROVED
+  PENDING
+  REJECTED
+  NEEDS_EDIT
+}
+
+model Setting {
+  key       String   @id
+  value     String   @db.Text
+  updatedAt DateTime @updatedAt
+}
+
+model PasswordReset {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  expiresAt DateTime
+  used      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([token])
+  @@index([userId])
+}
+
+model Like {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  noteId String
+  note   Note   @relation(fields: [noteId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, noteId])
+  @@index([noteId])
+}
+
+model Comment {
+  id        String   @id @default(cuid())
+  content   String   @db.Text
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  noteId String
+  note   Note   @relation(fields: [noteId], references: [id], onDelete: Cascade)
+
+  @@index([noteId])
+  @@index([userId])
+}
